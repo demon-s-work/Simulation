@@ -2,7 +2,6 @@
 /shelf/
 /workspace.xml
 # Rider ignored files
-/.idea.mgdesktopgl.iml
 /projectSettingsUpdater.xml
 /modules.xml
 /contentModel.xml
@@ -11,3 +10,7 @@
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
+/.idea/
+/bin/
+/obj/
+/Content/obj/
