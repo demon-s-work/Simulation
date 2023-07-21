@@ -1,3 +1,3 @@
 ﻿
-using var game = new mgdesktopgl.Game1();
+using var game = new Simulation.Simulation();
 game.Run();
