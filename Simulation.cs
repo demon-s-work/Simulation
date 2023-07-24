@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Linq;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Simulation.Entities;
@@ -10,22 +11,34 @@ public class Simulation : Game
 {
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
-    private Level _currentLevel = new Level();
+    private Level _currentLevel;
+    private PlayerControlService _inputService;
 
     public Simulation()
     {
         _graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
-        _currentLevel.Entities.Add(new Box
-        {
-            Position = Vector2.Zero
-        });
     }
 
     protected override void Initialize()
     {
-        // TODO: Add your initialization logic here
+        _currentLevel = new Level();
+        var player = new Box
+        {
+            Position = Vector2.Zero
+        };
+        var fl1 = new Flag
+        {
+            Position = new Vector2(100, 100)
+        };
+        var fl2 = new Flag
+        {
+            Position = new Vector2(200, 200)
+        };
+
+        _currentLevel.AddEntity(player);
+        _currentLevel.AddEntitiesRange( fl1, fl2 );
 
         base.Initialize();
     }
@@ -34,16 +47,16 @@ public class Simulation : Game
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
         _currentLevel.LoadContent(Content);
-        // TODO: use this.Content to load your game content here
     }
 
     protected override void Update(GameTime gameTime)
     {
-        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed 
+            || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
-        // TODO: Add your update logic here
-
+        _currentLevel.Update(gameTime);
+    
         base.Update(gameTime);
     }
 
