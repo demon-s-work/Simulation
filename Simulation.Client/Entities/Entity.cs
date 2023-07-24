@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-namespace Simulation.Entities
+namespace SimulationClient.Entities
 {
     public abstract class Entity
     {

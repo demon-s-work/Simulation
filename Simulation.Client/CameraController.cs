@@ -1,5 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-namespace Simulation
+namespace SimulationClient
 {
     public class CameraController : EntityController
     {

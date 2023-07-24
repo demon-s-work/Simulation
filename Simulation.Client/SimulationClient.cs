@@ -3,10 +3,10 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Simulation.Entities;
-using Simulation.Entities.Impl;
+using SimulationClient.Entities;
+using SimulationClient.Entities.Impl;
 
-namespace Simulation;
+namespace SimulationClient;
 
 public class Simulation : Game
 {

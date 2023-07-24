@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace Simulation.Entities.Impl
+namespace SimulationClient.Entities.Impl
 {
     public class Box : Entity
     {

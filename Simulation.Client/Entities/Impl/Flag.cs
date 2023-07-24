@@ -1,4 +1,4 @@
-﻿namespace Simulation.Entities.Impl
+﻿namespace SimulationClient.Entities.Impl
 {
     public class Flag : Entity
     {

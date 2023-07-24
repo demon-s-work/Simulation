@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
-using Simulation.Entities;
-namespace Simulation
+using SimulationClient.Entities;
+namespace SimulationClient
 {
     public class Camera2D
     {

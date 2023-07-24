@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
-using Simulation.Entities;
-namespace Simulation
+using SimulationClient.Entities;
+namespace SimulationClient
 {
     public abstract class EntityController
     {
