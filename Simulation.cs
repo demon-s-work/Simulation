@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.ComponentModel;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -12,8 +13,13 @@ public class Simulation : Game
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
     private Level _currentLevel;
-    private PlayerControlService _inputService;
-
+    private Camera2D Camera;
+    private Entity Player;
+    
+    public static SpriteFont DefaultFont;
+    public static int GameWidth = 1366;
+    public static int GameHeight = 768;
+    
     public Simulation()
     {
         _graphics = new GraphicsDeviceManager(this);
@@ -23,11 +29,18 @@ public class Simulation : Game
 
     protected override void Initialize()
     {
+        _graphics.PreferredBackBufferWidth = GameWidth;
+        _graphics.PreferredBackBufferHeight = GameHeight;
+        
+        _graphics.ApplyChanges();
+        
         _currentLevel = new Level();
-        var player = new Box
+        
+        Player = new Box
         {
-            Position = Vector2.Zero
+            Position = Vector2.Zero,
         };
+        
         var fl1 = new Flag
         {
             Position = new Vector2(100, 100)
@@ -37,7 +50,18 @@ public class Simulation : Game
             Position = new Vector2(200, 200)
         };
 
-        _currentLevel.AddEntity(player);
+        Camera = new Camera2D();
+
+        Camera.Controller = new CameraController
+        {
+            Entity = Player,
+            Camera = Camera
+        };
+        
+        _currentLevel.AddEntity(Player);
+
+        Player.Controller = new KeyboardControl(Player);
+        
         _currentLevel.AddEntitiesRange( fl1, fl2 );
 
         base.Initialize();
@@ -47,6 +71,7 @@ public class Simulation : Game
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
         _currentLevel.LoadContent(Content);
+        DefaultFont = Content.Load<SpriteFont>("DefaultFont");
     }
 
     protected override void Update(GameTime gameTime)
@@ -56,14 +81,21 @@ public class Simulation : Game
             Exit();
 
         _currentLevel.Update(gameTime);
-    
+        Camera.Update(gameTime);
+        
         base.Update(gameTime);
     }
 
     protected override void Draw(GameTime gameTime)
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
+        var viewMatrix = Camera.GetTransform();
         _spriteBatch.Begin();
+        _spriteBatch.DrawString(DefaultFont, $"{Camera.Position.X}|{Camera.Position.Y}", Vector2.One, Color.Black);
+        _spriteBatch.End();
+        
+        _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied,
+            null, null, null, null, viewMatrix);
         _currentLevel.Draw(_spriteBatch);
         _spriteBatch.End();
 

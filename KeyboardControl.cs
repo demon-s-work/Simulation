@@ -3,38 +3,36 @@ using Microsoft.Xna.Framework.Input;
 using Simulation.Entities;
 namespace Simulation
 {
-    public class PlayerControlService
+    public class KeyboardControl : EntityController
     {
-        public Entity PlayerEntity { get; init; }
-        
-        public PlayerControlService(Entity playerEntity)
+        public KeyboardControl(Entity entity)
         {
-            PlayerEntity = playerEntity;
+            Entity = entity;
         }
 
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             var state = Keyboard.GetState();
             var resultV = Vector2.Zero;
             
             if (state.IsKeyDown(Keys.Right))
             {
-                resultV.X = 10f;
+                resultV.X = Entity.Speed;
             }
             if (state.IsKeyDown(Keys.Left))
             {
-                resultV.X = -10f;
+                resultV.X = -Entity.Speed;
             }
             if (state.IsKeyDown(Keys.Up))
             {
-                resultV.Y = -10f;
+                resultV.Y = -Entity.Speed;
             }
             if (state.IsKeyDown(Keys.Down))
             {
-                resultV.Y = 10f;
+                resultV.Y = Entity.Speed;
             }
             
-            PlayerEntity.Position = Vector2.Add(PlayerEntity.Position, resultV);
+            Entity.Position = Vector2.Add(Entity.Position, resultV);
         }
     }
 }
