@@ -1,0 +1,1 @@
+.\fbec.exe --csharp --proto --input=contract.txt --output=.

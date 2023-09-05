@@ -1,0 +1,32 @@
+/*
+   https://github.com/chronoxor/FastBinaryEncoding
+   Generate protocol command: fbec --csharp --proto --input=simple.fbe --output=.
+*/
+
+domain com.simulation
+
+package contract
+
+version 1.0
+
+message SimpleMessage
+{
+    string Message;
+}
+
+[request]
+[response(SimpleResponse)]
+message SimpleRequest
+{
+    string Data;
+}
+
+message SimpleResponse
+{
+    string Data;
+}
+
+message LoginMessage
+{
+    string Login;
+}

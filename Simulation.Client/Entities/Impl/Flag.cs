@@ -1,7 +1,10 @@
-﻿namespace SimulationClient.Entities.Impl
+﻿namespace Simulation.Client.Entities.Impl
 {
     public class Flag : Entity
     {
-        public override string Name { get; } = "Flag";
+        public Flag()
+        {
+            Name = "Flag";
+        }
     }
 }

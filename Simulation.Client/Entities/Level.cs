@@ -1,22 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-namespace SimulationClient.Entities
+
+namespace Simulation.Client.Entities
 {
     public class Level
     {
         private List<Entity> _entities = new List<Entity>();
-        public ImmutableList<Entity> Entities => _entities.ToImmutableList();
-
-        public void LoadContent(ContentManager cm)
-        {
-            _entities.ForEach(e => e.LoadContent(cm));
-        }
-
+        
         public void Draw(SpriteBatch sb)
         {
             _entities.ForEach(e => e.Draw(sb));

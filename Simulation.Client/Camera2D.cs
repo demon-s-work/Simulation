@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
-using SimulationClient.Entities;
-namespace SimulationClient
+using Simulation.Client.Entities;
+namespace Simulation.Client
 {
     public class Camera2D
     {
@@ -12,7 +12,7 @@ namespace SimulationClient
             Position = Vector2.Zero;
         }
 
-        public Vector2 Position { get; set; }
+        public Vector2 Position { get; set; } = new Vector2();
         public float Zoom { get; set; }
         public float Rotation { get; set; }
         public EntityController Controller { get; set; }

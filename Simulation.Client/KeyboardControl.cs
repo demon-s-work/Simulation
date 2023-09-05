@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using SimulationClient.Entities;
-namespace SimulationClient
+using Simulation.Client.Entities;
+namespace Simulation.Client
 {
     public class KeyboardControl : EntityController
     {

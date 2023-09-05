@@ -1,3 +1,3 @@
 ﻿
-using var game = new SimulationClient.Simulation();
+using var game = new Simulation.Client.Simulation();
 game.Run();
